@@ -9,7 +9,10 @@
 <meta property="og:description" content="発音を持たず、表意文字だけで書き表される人工言語「留為語（るうぃご）」の辞書・作品・アカウントへの入口。">
 <meta property="og:url" content="https://ruwi-368.github.io/">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://ruwi-368.github.io/image/%E8%9D%B6_%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.JPG">
 <meta name="twitter:card" content="summary">
+<link rel="icon" href="image/蝶_アイコン.JPG">
+<link rel="apple-touch-icon" href="image/蝶_アイコン.JPG">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
@@ -54,9 +57,83 @@
     padding-right: 20px;
   }
   .band {
+    position: relative;
+    overflow: hidden;
     background: var(--enji);
     color: var(--on-enji);
     padding: 72px 0 40px;
+  }
+  .band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("image/文字たくさんホワイト.JPG") center / cover;
+    mix-blend-mode: multiply;
+    opacity: 0.22;
+  }
+  .band .inner { position: relative; }
+  html { overflow-x: clip; }
+  /* 画面の端から端まで使う横一列の帯。同じ並びを2回続けて置き、半分ずれたところで最初に戻すと切れ目なく流れ続ける */
+  .gallery {
+    --h: 280px;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    overflow: hidden;
+  }
+  .gallery .track {
+    display: flex;
+    width: max-content;
+    animation: gallery-scroll 50s linear infinite;
+  }
+  @keyframes gallery-scroll {
+    to { transform: translateX(-50%); }
+  }
+  .gallery figure { margin: 0; padding-right: 10px; cursor: zoom-in; }
+  .gallery figure:focus-visible { outline: none; }
+  .gallery figure:focus-visible img { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .gallery img {
+    display: block;
+    height: var(--h);
+    width: auto;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+  }
+  /* キャプションは普段は隠し、拡大したときだけ見せる */
+  .gallery figcaption { display: none; }
+  .gallery.is-open .track { animation-play-state: paused; }
+  /* 拡大表示 */
+  .zoom {
+    max-width: 94vw;
+    max-height: 94vh;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: zoom-out;
+  }
+  .zoom::backdrop { background: rgba(0, 0, 0, 0.85); }
+  .zoom img {
+    display: block;
+    max-width: 94vw;
+    max-height: 82vh;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+  }
+  .zoom p {
+    margin: 12px 0 0;
+    color: #ecebea;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+  @media (max-width: 420px) {
+    .gallery { --h: 200px; }
+  }
+  /* 動きを減らす設定の人には自動で流さず、指で横にずらして見てもらう */
+  @media (prefers-reduced-motion: reduce) {
+    .gallery { overflow-x: auto; }
+    .gallery .track { animation: none; }
+    .gallery .copy { display: none; }
   }
   h1 {
     font-size: 2.8rem;
@@ -123,7 +200,8 @@
   ul.links a:hover, ul.links a:focus-visible { background: var(--enji); color: var(--on-enji); }
   ul.links a:hover .sub, ul.links a:focus-visible .sub { color: var(--on-enji-muted); }
   ul.links .sub { display: block; font-size: 0.78rem; font-weight: 400; color: var(--muted); line-height: 1.5; }
-  .author { margin-bottom: 12px; font-weight: 500; letter-spacing: 0.1em; }
+  .author { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; font-weight: 500; letter-spacing: 0.1em; }
+  .author img { width: 56px; height: 56px; border-radius: 50%; }
   footer {
     background: var(--enji);
     color: var(--on-enji-muted);
@@ -153,6 +231,38 @@
   </section>
 
   <section>
+    <h2>ギャラリー</h2>
+    <div class="gallery">
+      <div class="track">
+        <figure>
+          <img src="image/240917_4x8詩.jpg" width="2338" height="1315" alt="筆で縦書きした、4字8行の留為語の詩">
+          <figcaption>4字×8行の詩（2024年9月17日）</figcaption>
+        </figure>
+        <figure>
+          <img src="image/こころ冒頭.jpg" width="533" height="709" alt="筆で縦書きした、夏目漱石『こころ』冒頭の留為語訳">
+          <figcaption>夏目漱石『こころ』冒頭の留為語訳（2024年7月25日）</figcaption>
+        </figure>
+        <figure>
+          <img src="image/蝉_なりたち.JPG" width="941" height="1255" alt="セミの絵が少しずつ形を崩して、留為文字になっていく4段階の図">
+          <figcaption>「セミ」を表す字のなりたち</figcaption>
+        </figure>
+        <figure class="copy" aria-hidden="true">
+          <img src="image/240917_4x8詩.jpg" width="2338" height="1315" alt="">
+          <figcaption>4字×8行の詩（2024年9月17日）</figcaption>
+        </figure>
+        <figure class="copy" aria-hidden="true">
+          <img src="image/こころ冒頭.jpg" width="533" height="709" alt="">
+          <figcaption>夏目漱石『こころ』冒頭の留為語訳（2024年7月25日）</figcaption>
+        </figure>
+        <figure class="copy" aria-hidden="true">
+          <img src="image/蝉_なりたち.JPG" width="941" height="1255" alt="">
+          <figcaption>「セミ」を表す字のなりたち</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
     <h2>今の状態</h2>
     <div class="stats">
       <div class="stat">
@@ -176,7 +286,7 @@
 
   <section>
     <h2>作者</h2>
-    <p class="author">RUI</p>
+    <p class="author"><img src="image/蝶_アイコン.JPG" width="400" height="400" alt="RUIのアイコン（虹色の背景に留為文字）">RUI</p>
     <ul class="links">
       <li><a href="https://x.com/RUWI368">X<span class="sub">@RUWI368</span></a></li>
       <li><a href="https://migdal.jp/ruwi368">Migdal<span class="sub">migdal.jp/ruwi368</span></a></li>
@@ -185,5 +295,42 @@
 
 </main>
 <footer><div class="inner">&copy; RUI</div></footer>
+<dialog class="zoom" aria-label="拡大画像">
+  <img src="" alt="">
+  <p></p>
+</dialog>
+<script>
+  // 流れている画像をクリックすると拡大し、そのときだけキャプションを出す。どこかをクリックするかEscで閉じる
+  (function () {
+    var gallery = document.querySelector('.gallery');
+    var zoom = document.querySelector('.zoom');
+    var zoomImg = zoom.querySelector('img');
+    var zoomCaption = zoom.querySelector('p');
+
+    gallery.querySelectorAll('figure').forEach(function (figure) {
+      if (!figure.classList.contains('copy')) {
+        figure.tabIndex = 0;
+        figure.setAttribute('role', 'button');
+        figure.setAttribute('aria-label', figure.querySelector('figcaption').textContent + '（拡大）');
+      }
+      figure.addEventListener('click', function () { open(figure); });
+      figure.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(figure); }
+      });
+    });
+
+    function open(figure) {
+      var img = figure.querySelector('img');
+      zoomImg.src = img.src;
+      zoomImg.alt = img.alt || figure.querySelector('figcaption').textContent;
+      zoomCaption.textContent = figure.querySelector('figcaption').textContent;
+      gallery.classList.add('is-open');
+      zoom.showModal();
+    }
+
+    zoom.addEventListener('click', function () { zoom.close(); });
+    zoom.addEventListener('close', function () { gallery.classList.remove('is-open'); });
+  })();
+</script>
 </body>
 </html>
