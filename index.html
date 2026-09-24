@@ -73,14 +73,13 @@
   }
   .band .inner { position: relative; }
   html { overflow-x: clip; }
-  /* 3枚を高さを揃えて横一列に並べる。各画像に縦横比の分だけ幅を割り振ると、高さが揃う */
+  /* パソコン：3枚を高さを揃えて横一列に並べる。各画像に縦横比の分だけ幅を割り振ると、高さが揃う */
   .gallery {
-    display: flex;
-    gap: 10px;
     width: min(960px, 100vw - 40px);
     margin-left: 50%;
     transform: translateX(-50%);
   }
+  .gallery .track { display: flex; gap: 10px; }
   .gallery figure { margin: 0; min-width: 0; cursor: zoom-in; }
   .gallery figure:focus-visible { outline: none; }
   .gallery figure:focus-visible img { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -90,6 +89,34 @@
     height: auto;
     box-shadow: 0 0 0 1px var(--line);
     border-radius: 2px;
+  }
+  .gallery .copy { display: none; }
+  /* スマホ：画面の端から端まで使って、ゆっくり左へ流し続ける。
+     同じ並びを2回続けて置き、半分ずれたところで最初に戻すと切れ目なく流れる */
+  @media (max-width: 600px) {
+    .gallery {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      transform: none;
+      overflow: hidden;
+    }
+    .gallery .track {
+      gap: 0;
+      width: max-content;
+      animation: gallery-scroll 40s linear infinite;
+    }
+    .gallery figure { flex: none !important; padding-right: 10px; }
+    .gallery .copy { display: block; }
+    .gallery img { width: auto; height: 200px; }
+  }
+  @keyframes gallery-scroll {
+    to { transform: translateX(-50%); }
+  }
+  /* 動きを減らす設定の人には自動で流さず、指で横にずらして見てもらう */
+  @media (max-width: 600px) and (prefers-reduced-motion: reduce) {
+    .gallery { overflow-x: auto; }
+    .gallery .track { animation: none; }
+    .gallery .copy { display: none; }
   }
   /* キャプションは普段は隠し、拡大したときだけ見せる */
   .gallery figcaption { display: none; }
@@ -216,18 +243,32 @@
   <section>
     <h2>ギャラリー</h2>
     <div class="gallery">
-      <figure style="flex: 1.778 1 0">
-        <img src="image/240917_4x8詩.jpg" width="2338" height="1315" alt="筆で縦書きした、4字8行の留為語の詩">
-        <figcaption>4字×8行の詩（2024年9月17日）</figcaption>
-      </figure>
-      <figure style="flex: 0.752 1 0">
-        <img src="image/こころ冒頭.jpg" width="533" height="709" alt="筆で縦書きした、夏目漱石『こころ』冒頭の留為語訳">
-        <figcaption>夏目漱石『こころ』冒頭の留為語訳（2024年7月25日）</figcaption>
-      </figure>
-      <figure style="flex: 0.750 1 0">
-        <img src="image/蝉_なりたち.JPG" width="941" height="1255" alt="セミの絵が少しずつ形を崩して、留為文字になっていく4段階の図">
-        <figcaption>「セミ」を表す字のなりたち</figcaption>
-      </figure>
+      <div class="track">
+        <figure style="flex: 1.778 1 0">
+          <img src="image/240917_4x8詩.jpg" width="2338" height="1315" alt="筆で縦書きした、4字8行の留為語の詩">
+          <figcaption>4字×8行の詩（2024年9月17日）</figcaption>
+        </figure>
+        <figure style="flex: 0.752 1 0">
+          <img src="image/こころ冒頭.jpg" width="533" height="709" alt="筆で縦書きした、夏目漱石『こころ』冒頭の留為語訳">
+          <figcaption>夏目漱石『こころ』冒頭の留為語訳（2024年7月25日）</figcaption>
+        </figure>
+        <figure style="flex: 0.750 1 0">
+          <img src="image/蝉_なりたち.JPG" width="941" height="1255" alt="セミの絵が少しずつ形を崩して、留為文字になっていく4段階の図">
+          <figcaption>「セミ」を表す字のなりたち</figcaption>
+        </figure>
+        <figure class="copy" aria-hidden="true" style="flex: 1.778 1 0">
+          <img src="image/240917_4x8詩.jpg" width="2338" height="1315" alt="">
+          <figcaption>4字×8行の詩（2024年9月17日）</figcaption>
+        </figure>
+        <figure class="copy" aria-hidden="true" style="flex: 0.752 1 0">
+          <img src="image/こころ冒頭.jpg" width="533" height="709" alt="">
+          <figcaption>夏目漱石『こころ』冒頭の留為語訳（2024年7月25日）</figcaption>
+        </figure>
+        <figure class="copy" aria-hidden="true" style="flex: 0.750 1 0">
+          <img src="image/蝉_なりたち.JPG" width="941" height="1255" alt="">
+          <figcaption>「セミ」を表す字のなりたち</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -277,9 +318,11 @@
     var zoomCaption = zoom.querySelector('p');
 
     gallery.querySelectorAll('figure').forEach(function (figure) {
-      figure.tabIndex = 0;
-      figure.setAttribute('role', 'button');
-      figure.setAttribute('aria-label', figure.querySelector('figcaption').textContent + '（拡大）');
+      if (!figure.classList.contains('copy')) {
+        figure.tabIndex = 0;
+        figure.setAttribute('role', 'button');
+        figure.setAttribute('aria-label', figure.querySelector('figcaption').textContent + '（拡大）');
+      }
       figure.addEventListener('click', function () { open(figure); });
       figure.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(figure); }
@@ -289,7 +332,7 @@
     function open(figure) {
       var img = figure.querySelector('img');
       zoomImg.src = img.src;
-      zoomImg.alt = img.alt;
+      zoomImg.alt = img.alt || figure.querySelector('figcaption').textContent;
       zoomCaption.textContent = figure.querySelector('figcaption').textContent;
       zoom.showModal();
     }
