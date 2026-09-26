@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ruwi-368.github.io/sitemap.xml
