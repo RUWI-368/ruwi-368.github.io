@@ -26,6 +26,7 @@
     "name": "RUI",
     "sameAs": [
       "https://x.com/RUWI368",
+      "https://bsky.app/profile/ruwi.bsky.social",
       "https://migdal.jp/ruwi368",
       "https://zpdic.ziphil.com/dictionary/ruwish_dictionary"
     ]
@@ -173,10 +174,16 @@
     margin: 0;
     line-height: 1.3;
   }
+  .title-icon {
+    width: 1.35em;
+    height: 1.35em;
+    margin-right: 0.3em;
+    vertical-align: -0.28em;
+  }
   h1::after {
     content: "";
     display: block;
-    width: 48px;
+    width: 80px;
     height: 3px;
     background: var(--on-enji);
     margin-top: 16px;
@@ -249,7 +256,7 @@
 <body>
 <header class="band">
   <div class="inner">
-    <h1>留為語</h1>
+    <h1><img class="title-icon" src="image/site/semi_title.png" width="192" height="192" alt="">留為語</h1>
     <p class="reading">るうぃご</p>
   </div>
 </header>
@@ -322,7 +329,7 @@
     <div class="stats">
       <div class="stat">
         <div class="label">語彙数</div>
-        <div class="value">1,602語</div>
+        <div class="value" id="word-count">1,602語</div>
         <div class="note">ZpDIC留為辞典の収録数</div>
       </div>
       <div class="stat">
@@ -353,6 +360,7 @@
     <p class="author"><img src="image/site/蝶_アイコン.JPG" width="400" height="400" alt="RUIのアイコン（虹色の背景に留為文字）">RUI</p>
     <ul class="links">
       <li><a href="https://x.com/RUWI368">X<span class="sub">@RUWI368</span></a></li>
+      <li><a href="https://bsky.app/profile/ruwi.bsky.social">Bluesky<span class="sub">@ruwi.bsky.social</span></a></li>
       <li><a href="https://migdal.jp/ruwi368">Migdal<span class="sub">migdal.jp/ruwi368</span></a></li>
     </ul>
   </section>
