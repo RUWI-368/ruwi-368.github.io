@@ -33,7 +33,7 @@ jobs:
 
           # 単語名が「空文字から始まる」語を探す＝全語が当たる。total が検索結果の総数
           url = ("https://zpdic.ziphil.com/api/v1/dictionary/ruwish_dictionary/words"
-                 "?text=&mode=name&type=prefix&limit=1")
+                 "?text=&mode=spelling&type=prefix&limit=1")
           request = urllib.request.Request(url, headers={
               "X-Api-Key": os.environ["ZPDIC_API_KEY"],
               "User-Agent": "ruwi-368.github.io word-count",
