@@ -12,6 +12,8 @@
 <meta property="og:image" content="https://ruwi-368.github.io/image/site/ogp_semi.png">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://ruwi-368.github.io/">
+<link rel="alternate" hreflang="ja" href="https://ruwi-368.github.io/">
+<link rel="alternate" hreflang="en" href="https://ruwi-368.github.io/en/">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -94,6 +96,20 @@
     opacity: 0.22;
   }
   .band .inner { position: relative; }
+  /* 言語の切り替え：帯の右上に置く */
+  .lang {
+    position: absolute;
+    top: -52px;
+    right: 20px;
+    color: var(--on-enji-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    padding: 2px 10px;
+  }
+  .lang:hover, .lang:focus-visible { color: var(--on-enji); }
   html { overflow-x: clip; }
   /* パソコン：4枚を高さを揃えて横一列に並べる。各画像に縦横比の分だけ幅を割り振ると、高さが揃う */
   .gallery {
@@ -249,6 +265,7 @@
   }
   @media (max-width: 420px) {
     .band { padding-top: 48px; }
+    .lang { top: -36px; }
     h1 { font-size: 2.2rem; }
   }
 </style>
@@ -256,6 +273,7 @@
 <body>
 <header class="band">
   <div class="inner">
+    <a class="lang" href="en/" hreflang="en" lang="en">English</a>
     <h1><img class="title-icon" src="image/site/semi_title.png" width="192" height="192" alt="">留為語</h1>
     <p class="reading">るうぃご</p>
   </div>
