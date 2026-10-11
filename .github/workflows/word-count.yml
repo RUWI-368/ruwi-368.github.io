@@ -1,4 +1,4 @@
-# ZpDIC留為辞典の収録語数を調べて、index.html の「語彙数」欄を書き換える。
+# ZpDIC留為辞典の収録語数を調べて、index.html（日本語版）と en/index.html（英語版）の「語彙数」欄を書き換える。
 # APIキーはリポジトリの Secrets に ZPDIC_API_KEY という名前で登録しておく。
 name: 語彙数の自動更新
 
@@ -12,6 +12,7 @@ on:
   push:
     paths:
       - "index.html"
+      - "en/index.html"
 
 permissions:
   contents: write
@@ -24,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: ZpDICから語数を取得してindex.htmlに書き込む
+      - name: ZpDICから語数を取得して日本語版・英語版に書き込む
         env:
           ZPDIC_API_KEY: ${{ secrets.ZPDIC_API_KEY }}
         run: |
@@ -44,17 +45,18 @@ jobs:
               raise SystemExit(f"語数がおかしいので書き換えません: {total!r}")
           print(f"ZpDICの語数: {total}")
 
-          path = "index.html"
-          html = open(path, encoding="utf-8").read()
-          new_html, count = re.subn(
-              r'(<div class="value" id="word-count">)[^<]*(</div>)',
-              rf"\g<1>{total:,}語\g<2>",
-              html,
-          )
-          if count != 1:
-              raise SystemExit('index.html に id="word-count" の欄が見つかりません')
-          if new_html != html:
-              open(path, "w", encoding="utf-8").write(new_html)
+          # ファイルごとに、数字の後ろに付ける言葉を変える
+          for path, unit in [("index.html", "語"), ("en/index.html", " words")]:
+              html = open(path, encoding="utf-8").read()
+              new_html, count = re.subn(
+                  r'(<div class="value" id="word-count">)[^<]*(</div>)',
+                  rf"\g<1>{total:,}{unit}\g<2>",
+                  html,
+              )
+              if count != 1:
+                  raise SystemExit(f'{path} に id="word-count" の欄が見つかりません')
+              if new_html != html:
+                  open(path, "w", encoding="utf-8").write(new_html)
           EOF
 
       - name: 語数が変わっていたら保存する
@@ -67,4 +69,3 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -am "語彙数を自動更新"
           git push
-          
