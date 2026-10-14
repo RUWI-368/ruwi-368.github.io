@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruwish</title>
+<meta name="description" content="The dictionary, works and accounts of Ruwish, a constructed language with no pronunciation, written only in ideographic characters.">
+<meta property="og:title" content="Ruwish">
+<meta property="og:description" content="The dictionary, works and accounts of Ruwish, a constructed language with no pronunciation, written only in ideographic characters.">
+<meta property="og:url" content="https://ruwi-368.github.io/en/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ruwi-368.github.io/image/site/ogp_semi.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://ruwi-368.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://ruwi-368.github.io/">
+<link rel="alternate" hreflang="en" href="https://ruwi-368.github.io/en/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Ruwish",
+  "alternateName": "留為語",
+  "url": "https://ruwi-368.github.io/en/",
+  "inLanguage": "en",
+  "description": "The dictionary, works and accounts of Ruwish, a constructed language with no pronunciation, written only in ideographic characters.",
+  "author": {
+    "@type": "Person",
+    "name": "RUI",
+    "sameAs": [
+      "https://x.com/RUWI368",
+      "https://bsky.app/profile/ruwi.bsky.social",
+      "https://migdal.jp/ruwi368",
+      "https://zpdic.ziphil.com/dictionary/ruwish_dictionary"
+    ]
+  }
+}
+</script>
+<link rel="icon" type="image/png" href="../image/site/favicon3.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --enji: #910000;
+    --on-enji: #ffffff;
+    --on-enji-muted: #e8c9c9;
+    --bg: #f6f5f3;
+    --surface: #ffffff;
+    --text: #222222;
+    --muted: #5f5b58;
+    --line: #dedad6;
+    --accent: var(--enji);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --enji: #910000;
+      --bg: #1b1a1a;
+      --surface: #252323;
+      --text: #ecebea;
+      --muted: #b0aba8;
+      --line: #3b3838;
+      --accent: #e26a6a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    font-weight: 400;
+    line-height: 1.95;
+    letter-spacing: 0.03em;
+    -webkit-text-size-adjust: 100%;
+  }
+  .inner, main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .band {
+    position: relative;
+    overflow: hidden;
+    background: var(--enji);
+    color: var(--on-enji);
+    padding: 72px 0 40px;
+  }
+  .band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("../image/site/文字たくさんホワイト.JPG") center / cover;
+    mix-blend-mode: multiply;
+    opacity: 0.22;
+  }
+  .band .inner { position: relative; }
+  /* 言語の切り替え：帯の右上に置く */
+  .lang {
+    position: absolute;
+    top: -52px;
+    right: 20px;
+    color: var(--on-enji-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    padding: 2px 10px;
+  }
+  .lang:hover, .lang:focus-visible { color: var(--on-enji); }
+  .h2-note { font-size: 0.85em; letter-spacing: 0.05em; }
+  html { overflow-x: clip; }
+  /* パソコン：4枚を高さを揃えて横一列に並べる。各画像に縦横比の分だけ幅を割り振ると、高さが揃う */
+  .gallery {
+    width: min(960px, 100vw - 40px);
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  .gallery .track { display: flex; gap: 10px; }
+  .gallery figure { margin: 0; min-width: 0; cursor: zoom-in; }
+  .gallery figure:focus-visible { outline: none; }
+  .gallery figure:focus-visible img { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .gallery img {
+    display: block;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 0 0 1px var(--line);
+    border-radius: 2px;
+  }
+  .gallery .copy { display: none; }
+  /* スマホ：画面の端から端まで使って、ゆっくり左へ流し続ける。
+     同じ並びを2回続けて置き、半分ずれたところで最初に戻すと切れ目なく流れる */
+  @media (max-width: 600px) {
+    .gallery {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      transform: none;
+      overflow: hidden;
+    }
+    .gallery .track {
+      gap: 0;
+      width: max-content;
+      animation: gallery-scroll 40s linear infinite;
+    }
+    .gallery figure { flex: none !important; padding-right: 10px; }
+    .gallery .copy { display: block; }
+    .gallery img { width: auto; height: 200px; }
+  }
+  @keyframes gallery-scroll {
+    to { transform: translateX(-50%); }
+  }
+  /* 動きを減らす設定の人には自動で流さず、指で横にずらして見てもらう */
+  @media (max-width: 600px) and (prefers-reduced-motion: reduce) {
+    .gallery { overflow-x: auto; }
+    .gallery .track { animation: none; }
+    .gallery .copy { display: none; }
+  }
+  /* キャプションは普段は隠し、拡大したときだけ見せる */
+  .gallery figcaption { display: none; }
+  /* 拡大表示 */
+  .zoom {
+    max-width: 94vw;
+    max-height: 94vh;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: zoom-out;
+  }
+  .zoom::backdrop { background: rgba(0, 0, 0, 0.85); }
+  .zoom img {
+    display: block;
+    max-width: 94vw;
+    max-height: 82vh;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+  }
+  .zoom p {
+    margin: 12px 0 0;
+    color: #ecebea;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+  h1 {
+    font-size: 2.8rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    margin: 0;
+    line-height: 1.3;
+  }
+  .title-icon {
+    width: 1.35em;
+    height: 1.35em;
+    margin-right: 0.3em;
+    vertical-align: -0.28em;
+  }
+  h1::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--on-enji);
+    margin-top: 16px;
+  }
+  .reading {
+    color: var(--on-enji-muted);
+    letter-spacing: 0.3em;
+    margin: 12px 0 0;
+  }
+  main { padding-top: 44px; padding-bottom: 48px; }
+  h2 {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--on-enji);
+    background: var(--enji);
+    margin: 48px 0 14px;
+    padding: 4px 14px;
+    line-height: 1.6;
+  }
+  p { margin: 0 0 1em; }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--enji);
+    border-radius: 2px;
+    padding: 14px 16px;
+  }
+  .stat .label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.1em; }
+  .stat .value { font-size: 1.5rem; font-weight: 500; letter-spacing: 0.05em; color: var(--accent); }
+  .stat .note { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
+  ul.links { list-style: none; padding: 0; margin: 0; }
+  ul.links li + li { margin-top: 8px; }
+  ul.links a {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--enji);
+    border-radius: 2px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.15s, color 0.15s;
+  }
+  ul.links a:hover, ul.links a:focus-visible { background: var(--enji); color: var(--on-enji); }
+  ul.links a:hover .sub, ul.links a:focus-visible .sub { color: var(--on-enji-muted); }
+  ul.links .sub { display: block; font-size: 0.78rem; font-weight: 400; color: var(--muted); line-height: 1.5; }
+  .author { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; font-weight: 500; letter-spacing: 0.1em; }
+  .author img { width: 56px; height: 56px; border-radius: 50%; }
+  footer {
+    background: var(--enji);
+    color: var(--on-enji-muted);
+    font-size: 0.8rem;
+    padding: 20px 0;
+    margin-top: 24px;
+  }
+  @media (max-width: 420px) {
+    .band { padding-top: 48px; }
+    .lang { top: -36px; }
+    h1 { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+<header class="band">
+  <div class="inner">
+    <a class="lang" href="../" hreflang="ja" lang="ja">日本語</a>
+    <h1><img class="title-icon" src="../image/site/semi_title.png" width="192" height="192" alt="">Ruwish</h1>
+    <p class="reading">留為語</p>
+  </div>
+</header>
+<main>
+
+  <section>
+    <p>Ruwish is a constructed language that I have been creating since August 2020.</p>
+    <p>Ruwish has no pronunciation. It has no spoken form, and every word is written only with ideographic characters. There are currently about 1,100 characters, and each one is built by combining several components, much like Chinese characters.</p>
+    <p>Grammatically, Ruwish is an isolating language: words never change their form. The basic word order is subject–verb–object (SVO), and adjectives come before the nouns they describe.</p>
+  </section>
+
+  <section>
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <div class="track">
+        <figure style="flex: 1.778 1 0">
+          <img src="../image/gallery/240917_4x8詩.jpg" width="2338" height="1315" alt="A Ruwish poem of 8 lines of 4 characters, written vertically with a brush">
+          <figcaption>A poem of 8 lines × 4 characters (September 17, 2024)</figcaption>
+        </figure>
+        <figure style="flex: 0.752 1 0">
+          <img src="../image/gallery/こころ冒頭.jpg" width="533" height="709" alt="The opening of Natsume Sōseki's Kokoro translated into Ruwish, written vertically with a brush">
+          <figcaption>The opening of Natsume Sōseki’s <i>Kokoro</i>, translated into Ruwish (July 25, 2024)</figcaption>
+        </figure>
+        <figure style="flex: 0.750 1 0">
+          <img src="../image/gallery/蝉_なりたち.JPG" width="941" height="1255" alt="Four stages of a drawing of a cicada gradually turning into a Ruwish character">
+          <figcaption>How the character for “cicada” came to be</figcaption>
+        </figure>
+        <figure style="flex: 1.580 1 0">
+          <img src="../image/gallery/溢話.jpg" width="278" height="176" alt="The Ruwish word for “thank you”">
+          <figcaption>The word for “thank you”</figcaption>
+        </figure>
+        <figure style="flex: 0.563 1 0">
+          <img src="../image/gallery/秋雨前線.JPG" width="1324" height="2353" alt="The four characters for “autumn rain front”, written vertically in Ruwish script">
+          <figcaption>“Autumn rain front” (Museum of Constructed Scripts, Autumn Special Exhibition, 2023)</figcaption>
+        </figure>
+        <figure style="flex: 1.000 1 0">
+          <img src="../image/gallery/金星火粉.png" width="816" height="816" alt="Four Ruwish characters in orange, arranged 2 by 2 in imitation of an old Chinese seal style">
+          <figcaption>A four-character idiom describing fragrant olive (osmanthus) in bloom, written in imitation of an old Chinese seal style (Museum of Constructed Scripts, Autumn Special Exhibition, 2023)</figcaption>
+        </figure>
+        <figure class="copy" aria-hidden="true" style="flex: 1.778 1 0">
+          <img src="../image/gallery/240917_4x8詩.jpg" width="2338" height="1315" alt="">
+          <figcaption>A poem of 8 lines × 4 characters (September 17, 2024)</figcaption>
+        </figure>
+        <figure class="copy" aria-hidden="true" style="flex: 0.752 1 0">
+          <img src="../image/gallery/こころ冒頭.jpg" width="533" height="709" alt="">
+          <figcaption>The opening of Natsume Sōseki’s <i>Kokoro</i>, translated into Ruwish (July 25, 2024)</figcaption>
+        </figure>
+        <figure class="copy" aria-hidden="true" style="flex: 0.750 1 0">
+          <img src="../image/gallery/蝉_なりたち.JPG" width="941" height="1255" alt="">
+          <figcaption>How the character for “cicada” came to be</figcaption>
+        </figure>
+        <figure class="copy" aria-hidden="true" style="flex: 1.580 1 0">
+          <img src="../image/gallery/溢話.jpg" width="278" height="176" alt="">
+          <figcaption>The word for “thank you”</figcaption>
+        </figure>
+        <figure class="copy" aria-hidden="true" style="flex: 0.563 1 0">
+          <img src="../image/gallery/秋雨前線.JPG" width="1324" height="2353" alt="">
+          <figcaption>“Autumn rain front” (Museum of Constructed Scripts, Autumn Special Exhibition, 2023)</figcaption>
+        </figure>
+        <figure class="copy" aria-hidden="true" style="flex: 1.000 1 0">
+          <img src="../image/gallery/金星火粉.png" width="816" height="816" alt="">
+          <figcaption>A four-character idiom describing fragrant olive (osmanthus) in bloom, written in imitation of an old Chinese seal style (Museum of Constructed Scripts, Autumn Special Exhibition, 2023)</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Status</h2>
+    <div class="stats">
+      <div class="stat">
+        <div class="label">Vocabulary</div>
+        <div class="value" id="word-count">1,617 words</div>
+        <div class="note">Entries in the ZpDIC Ruwish Dictionary</div>
+      </div>
+      <div class="stat">
+        <div class="label">Last updated</div>
+        <div class="value">2026.10.14</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Grammar</h2>
+    <ul class="links">
+      <li><a href="grammar/moji.html">Chapter 0: The Ruwish Script<span class="sub">Types of characters, and how to read RSDcode</span></a></li>
+      <li><a href="../grammar/gojun.html" hreflang="ja">Chapter 1: Word Order <span class="h2-note">(in Japanese)</span><span class="sub">What goes where in a sentence</span></a></li>
+      <li><a href="../grammar/kihonbun.html" hreflang="ja">Chapter 2: Basic Sentences <span class="h2-note">(in Japanese)</span><span class="sub">Pronouns, copular sentences and existential sentences</span></a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Dictionary</h2>
+    <ul class="links">
+      <li><a href="https://zpdic.ziphil.com/dictionary/ruwish_dictionary">ZpDIC Ruwish Dictionary<span class="sub">zpdic.ziphil.com (in Japanese)</span></a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Author</h2>
+    <p class="author"><img src="../image/site/蝶_アイコン.JPG" width="400" height="400" alt="RUI’s icon: a Ruwish character on a rainbow background">RUI</p>
+    <ul class="links">
+      <li><a href="https://x.com/RUWI368">X<span class="sub">@RUWI368</span></a></li>
+      <li><a href="https://bsky.app/profile/ruwi.bsky.social">Bluesky<span class="sub">@ruwi.bsky.social</span></a></li>
+      <li><a href="https://migdal.jp/ruwi368">Migdal<span class="sub">migdal.jp/ruwi368</span></a></li>
+    </ul>
+  </section>
+
+</main>
+<footer><div class="inner">&copy; RUI</div></footer>
+<dialog class="zoom" aria-label="Enlarged image">
+  <img src="" alt="">
+  <p></p>
+</dialog>
+<script>
+  // 画像をクリックすると拡大し、そのときだけキャプションを出す。どこかをクリックするかEscで閉じる
+  (function () {
+    var gallery = document.querySelector('.gallery');
+    var zoom = document.querySelector('.zoom');
+    var zoomImg = zoom.querySelector('img');
+    var zoomCaption = zoom.querySelector('p');
+
+    gallery.querySelectorAll('figure').forEach(function (figure) {
+      if (!figure.classList.contains('copy')) {
+        figure.tabIndex = 0;
+        figure.setAttribute('role', 'button');
+        figure.setAttribute('aria-label', figure.querySelector('figcaption').textContent + ' (enlarge)');
+      }
+      figure.addEventListener('click', function () { open(figure); });
+      figure.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(figure); }
+      });
+    });
+
+    function open(figure) {
+      var img = figure.querySelector('img');
+      zoomImg.src = img.src;
+      zoomImg.alt = img.alt || figure.querySelector('figcaption').textContent;
+      zoomCaption.textContent = figure.querySelector('figcaption').textContent;
+      zoom.showModal();
+    }
+
+    zoom.addEventListener('click', function () { zoom.close(); });
+  })();
+</script>
+</body>
+</html>
