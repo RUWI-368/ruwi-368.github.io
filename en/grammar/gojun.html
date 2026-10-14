@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 1: Word Order | Ruwish</title>
+<meta name="description" content="Word order in Ruwish: the subject–verb–object (SVO) framework, and where adjectives, numbers, adverbs and other words go in a sentence.">
+<meta property="og:title" content="Chapter 1: Word Order | Ruwish">
+<meta property="og:description" content="Word order in Ruwish: the subject–verb–object (SVO) framework, and where adjectives, numbers, adverbs and other words go in a sentence.">
+<meta property="og:url" content="https://ruwi-368.github.io/en/grammar/gojun.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://ruwi-368.github.io/image/site/ogp_semi.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://ruwi-368.github.io/en/grammar/gojun.html">
+<link rel="alternate" hreflang="ja" href="https://ruwi-368.github.io/grammar/gojun.html">
+<link rel="alternate" hreflang="en" href="https://ruwi-368.github.io/en/grammar/gojun.html">
+<link rel="icon" type="image/png" href="../../image/site/favicon3.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="../../font/RuwishWrite.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face {
+    font-family: "RuwishWrite";
+    src: url("../../font/RuwishWrite.woff2") format("woff2");
+    font-display: block;
+  }
+  :root {
+    --enji: #910000;
+    --on-enji: #ffffff;
+    --on-enji-muted: #e8c9c9;
+    --bg: #f6f5f3;
+    --surface: #ffffff;
+    --text: #222222;
+    --muted: #5f5b58;
+    --line: #dedad6;
+    --accent: var(--enji);
+    --code-bg: #efece9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --enji: #910000;
+      --bg: #1b1a1a;
+      --surface: #252323;
+      --text: #ecebea;
+      --muted: #b0aba8;
+      --line: #3b3838;
+      --accent: #e26a6a;
+      --code-bg: #302d2d;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { overflow-x: clip; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    font-weight: 400;
+    line-height: 1.85;
+    letter-spacing: 0.01em;
+    -webkit-text-size-adjust: 100%;
+  }
+  .inner, main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  a { color: var(--accent); }
+
+  /* 表題の帯（ハブページと同じ作り） */
+  .band {
+    position: relative;
+    overflow: hidden;
+    background: var(--enji);
+    color: var(--on-enji);
+    padding: 40px 0 32px;
+  }
+  .band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("../../image/site/文字たくさんホワイト.JPG") center / cover;
+    mix-blend-mode: multiply;
+    opacity: 0.22;
+  }
+  .band .inner { position: relative; }
+  /* 言語の切り替え：帯の右上に置く */
+  .lang {
+    position: absolute;
+    top: -24px;
+    right: 20px;
+    color: var(--on-enji-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    padding: 2px 10px;
+  }
+  .lang:hover, .lang:focus-visible { color: var(--on-enji); }
+  .crumb { margin: 0 0 18px; padding-right: 90px; font-size: 0.85rem; letter-spacing: 0.08em; color: var(--on-enji-muted); }
+  .crumb a { color: var(--on-enji); text-decoration: none; }
+  .crumb a span { border-bottom: 1px solid var(--on-enji-muted); }
+  .crumb .title-icon {
+    width: 2.2em;
+    height: 2.2em;
+    margin-right: 0.45em;
+    vertical-align: -0.75em;
+  }
+  h1 {
+    font-size: 2.1rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin: 0;
+    line-height: 1.3;
+  }
+  h1 .chap { display: block; font-size: 0.5em; letter-spacing: 0.15em; color: var(--on-enji-muted); margin-bottom: 4px; }
+  h1::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--on-enji);
+    margin-top: 14px;
+  }
+
+  main { padding-top: 36px; padding-bottom: 48px; }
+  h2 {
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--on-enji);
+    background: var(--enji);
+    margin: 56px 0 16px;
+    padding: 4px 14px;
+    line-height: 1.6;
+  }
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin: 36px 0 10px;
+    padding-left: 12px;
+    border-left: 4px solid var(--enji);
+    line-height: 1.5;
+  }
+  p { margin: 0 0 1em; }
+  strong { font-weight: 500; color: var(--accent); }
+
+  /* 留為文字 */
+  .rw {
+    font-family: "RuwishWrite", serif;
+    font-size: 1.35em;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    padding: 0 0.1em;
+  }
+  td .rw { font-size: 1.8em; }
+
+  /* RSDcode */
+  code {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    background: var(--code-bg);
+    border-radius: 3px;
+    padding: 0.1em 0.4em;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  /* 字と訳を上下に並べた例 */
+  .gloss {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 6px;
+    margin: 12px 0 8px;
+  }
+  .gloss .w {
+    min-width: 72px;
+    padding: 10px 12px 8px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    text-align: center;
+  }
+  .gloss .w .rw { display: block; font-size: 2.4rem; line-height: 1.2; padding: 0; }
+  .gloss .w .t { display: block; font-size: 0.8rem; color: var(--muted); line-height: 1.5; margin-top: 4px; }
+  .gloss .w.result { border-color: var(--enji); border-width: 2px; }
+  .gloss .op { align-self: center; margin-top: -18px; color: var(--muted); font-size: 1.2rem; padding: 0 2px; }
+  .trans { margin: 0 0 1.2em; }
+
+  /* 字の種類の見出しカード */
+  .kind { margin: 28px 0 0; }
+  .kind h4 {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 6px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .kind h4 .tag {
+    display: inline-block;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    padding: 0 8px;
+  }
+  .kind h4 .ja { font-size: 0.8rem; font-weight: 400; color: var(--muted); letter-spacing: 0.1em; }
+
+  /* 図 */
+  figure { margin: 18px 0 22px; }
+  /* パソコンでは本文の幅の70%に縮めて中央に置く。スマホでは幅いっぱいに使う */
+  figure img {
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px var(--line);
+    background: #fff;
+    cursor: zoom-in;
+  }
+  figcaption { font-size: 0.8rem; color: var(--muted); margin-top: 6px; line-height: 1.6; text-align: center; }
+  /* 図の中の文字の大きさがそろうよう、元の画像の大きさに合わせて幅を変える */
+  figure img.w-sm { width: 47%; }
+  figure img.w-full { width: 100%; }
+  @media (max-width: 600px) {
+    figure img { width: 100%; }
+    figure img.w-sm { width: 70%; }
+  }
+
+  /* 表 */
+  .table-wrap { overflow-x: auto; margin: 12px 0 16px; }
+  table { border-collapse: collapse; width: 100%; background: var(--surface); font-size: 0.92rem; }
+  th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: middle; }
+  th { font-weight: 500; background: var(--code-bg); font-size: 0.85rem; }
+  td.num { text-align: center; white-space: nowrap; }
+
+  /* RSDcodeの分解図 */
+  .anatomy {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 4px;
+    margin: 14px 0 16px;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  .anatomy .seg { text-align: center; }
+  .anatomy .seg b {
+    display: block;
+    font-weight: 400;
+    font-size: 1.4rem;
+    padding: 4px 10px;
+    background: var(--code-bg);
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .anatomy .seg.hl b { box-shadow: inset 0 -3px 0 var(--enji); }
+  .anatomy .seg.plain b { background: none; padding-left: 0; padding-right: 0; }
+  .anatomy .seg small {
+    display: block;
+    font-family: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* 組み立ての手順 */
+  ol.steps { list-style: none; padding: 0; margin: 10px 0 18px; counter-reset: step; }
+  ol.steps li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 28px auto 1fr;
+    align-items: baseline;
+    gap: 6px 10px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  ol.steps li::before {
+    content: counter(step);
+    display: inline-grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--enji);
+    color: var(--on-enji);
+    font-size: 0.8rem;
+    line-height: 1;
+  }
+  ol.steps .desc { font-size: 0.9rem; }
+  ol.steps code { justify-self: start; }
+  @media (max-width: 520px) {
+    ol.steps li { grid-template-columns: 28px 1fr; }
+    ol.steps .desc { grid-column: 2; }
+  }
+
+  ol.howto { padding-left: 1.4em; margin: 10px 0 14px; }
+  ol.howto li { margin-bottom: 4px; }
+
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--enji);
+    border-radius: 2px;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 0.92rem;
+  }
+  .note p:last-child { margin-bottom: 0; }
+
+  .back {
+    display: block;
+    margin-top: 56px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--enji);
+    border-radius: 2px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.15s, color 0.15s;
+  }
+  .back:hover, .back:focus-visible { background: var(--enji); color: var(--on-enji); }
+  .pager { display: flex; gap: 10px; margin-top: 56px; }
+  .pager a { flex: 1; margin-top: 0; }
+  .pager .next { text-align: right; }
+  .pager .sub { display: block; font-size: 0.78rem; font-weight: 400; color: var(--muted); }
+  .pager a:hover .sub, .pager a:focus-visible .sub { color: var(--on-enji-muted); }
+
+  /* 図の拡大表示（ハブページと同じ作り） */
+  .zoom {
+    max-width: 96vw;
+    max-height: 96vh;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: zoom-out;
+  }
+  .zoom::backdrop { background: rgba(0, 0, 0, 0.85); }
+  .zoom img { display: block; max-width: 96vw; max-height: 90vh; width: auto; height: auto; margin: 0 auto; background: #fff; }
+
+  footer {
+    background: var(--enji);
+    color: var(--on-enji-muted);
+    font-size: 0.8rem;
+    padding: 20px 0;
+    margin-top: 24px;
+  }
+  @media (max-width: 420px) {
+    h1 { font-size: 1.6rem; }
+    .gloss .w { min-width: 60px; padding: 8px 8px 6px; }
+    .gloss .w .rw { font-size: 2rem; }
+  }
+  /* 例文：留為文字と一字ずつの意味を並べ、その下に英語訳 */
+  .ex { margin: 14px 0 26px; }
+  .ex .gloss { margin: 0 0 6px; }
+  .ex .trans { margin: 0; padding-left: 2px; font-size: 0.95rem; }
+</style>
+</head>
+<body>
+<header class="band">
+  <div class="inner">
+    <a class="lang" href="../../grammar/gojun.html" hreflang="ja" lang="ja">日本語</a>
+    <p class="crumb"><a href="../"><img class="title-icon" src="../../image/site/semi_title.png" width="192" height="192" alt=""><span>Ruwish</span></a>　›　Grammar</p>
+    <h1><span class="chap">Chapter 1</span>Word Order</h1>
+  </div>
+</header>
+<main>
+
+  <p>Ruwish is an <strong>isolating language</strong>: words never change their form, and there are no particles or endings that mark a word’s role in the sentence, such as subject or object. That makes <strong>the order in which words are placed</strong> the most important clue to a sentence’s meaning.</p>
+  <p>This page explains what goes where in a Ruwish sentence.</p>
+
+  <h2>1. The framework of a sentence</h2>
+  <p>A Ruwish sentence follows the order <strong>subject → verb → object</strong> (SVO).</p>
+  <div class="ex">
+    <div class="gloss"><div class="w"><span class="rw">我</span><span class="t">I</span></div><div class="w"><span class="rw">食</span><span class="t">eat</span></div><div class="w"><span class="rw">檎果</span><span class="t">apple</span></div></div>
+    <p class="trans">“I eat an apple.”</p>
+  </div>
+
+  <p>What follows the verb depends on the verb. Ruwish sentences fall into the following four patterns.</p>
+
+  <h3>① Subject + verb</h3>
+  <p>A sentence in which nothing follows the verb.</p>
+  <div class="ex">
+    <div class="gloss"><div class="w"><span class="rw">我</span><span class="t">I</span></div><div class="w"><span class="rw">歩</span><span class="t">walk</span></div></div>
+    <p class="trans">“I walk.”</p>
+  </div>
+
+  <h3>② Subject + verb + object</h3>
+  <p>A sentence in which the verb is followed by the target of the action (the object).</p>
+  <div class="ex">
+    <div class="gloss"><div class="w"><span class="rw">我</span><span class="t">I</span></div><div class="w"><span class="rw">食</span><span class="t">eat</span></div><div class="w"><span class="rw">檎果</span><span class="t">apple</span></div></div>
+    <p class="trans">“I eat an apple.”</p>
+  </div>
+
+  <h3>③ Subject + verb + complement</h3>
+  <p>A sentence that describes a quality or state of the subject. <span class="rw">很</span> is a copular verb. It is followed by an adjective and shows what state the subject is in.</p>
+  <div class="ex">
+    <div class="gloss"><div class="w"><span class="rw">斯</span><span class="t">this</span></div><div class="w"><span class="rw">檎果</span><span class="t">apple</span></div><div class="w"><span class="rw">很</span><span class="t">(copular verb)</span></div><div class="w"><span class="rw">大</span><span class="t">big</span></div></div>
+    <p class="trans">“This apple is big.”</p>
+  </div>
+
+  <h3>④ Subject + verb + object + complement</h3>
+  <p>A sentence meaning “the subject brings the object into the state of the complement”.</p>
+  <p>Sentences about handing something to someone, such as “give someone something” (giving sentences), are treated in many languages as sentences with two objects (“her” and “an apple”).</p>
+  <p>Ruwish, however, does not set up a separate pattern with two objects. Instead, one of them is treated as a complement. Ruwish expresses a wide range of things with pattern ④, so it is easier to explain giving sentences as one of its uses (more on this in a later chapter).</p>
+  <div class="ex">
+    <div class="gloss"><div class="w"><span class="rw">我</span><span class="t">I</span></div><div class="w"><span class="rw">給</span><span class="t">give</span></div><div class="w"><span class="rw">檎果</span><span class="t">apple</span></div><div class="w"><span class="rw">他女</span><span class="t">she</span></div></div>
+    <p class="trans">“I give an apple to her.”</p>
+  </div>
+
+  <p>This sentence means “the ownership of the apple (object) becomes hers (complement)”, and is loosely translated as “I give an apple to her”. The receiver is a complement, not an object, so “apple” comes first and “her” comes after.</p>
+
+  <h2>2. Words attached to nouns</h2>
+
+  <h3>Adjectives</h3>
+  <p>Adjectives are placed <strong>before the noun</strong>.</p>
+  <div class="ex">
+    <div class="gloss"><div class="w"><span class="rw">我</span><span class="t">I</span></div><div class="w"><span class="rw">食</span><span class="t">eat</span></div><div class="w"><span class="rw">大</span><span class="t">big</span></div><div class="w"><span class="rw">檎果</span><span class="t">apple</span></div></div>
+    <p class="trans">“I eat a big apple.”</p>
+  </div>
+
+  <h3>Possession</h3>
+  <p>To show the owner, place <span class="rw">的</span> between the owner and the noun.</p>
+  <div class="ex">
+    <div class="gloss"><div class="w"><span class="rw">私們</span><span class="t">we</span></div><div class="w"><span class="rw">的</span><span class="t">of</span></div><div class="w"><span class="rw">家</span><span class="t">house</span></div></div>
+    <p class="trans">“our house”</p>
+  </div>
+
+  <p>When it is clear who the owner is, <span class="rw">的</span> may be left out.</p>
+  <div class="ex">
+    <div class="gloss"><div class="w"><span class="rw">他男</span><span class="t">he</span></div><div class="w"><span class="rw">妻</span><span class="t">wife</span></div><div class="w"><span class="rw">毎日</span><span class="t">every day</span></div><div class="w"><span class="rw">食</span><span class="t">eat</span></div><div class="w"><span class="rw">檎果</span><span class="t">apple</span></div></div>
+    <p class="trans">“His wife eats an apple every day.”</p>
+  </div>
+
+  <h3>Numbers</h3>
+  <p>Numbers are also placed before the noun.</p>
+  <div class="ex">
+    <div class="gloss"><div class="w"><span class="rw">三</span><span class="t">three</span></div><div class="w"><span class="rw">檎果</span><span class="t">apple</span></div><div class="w"><span class="rw">在</span><span class="t">exist</span></div></div>
+    <p class="trans">“There are three apples.”</p>
+  </div>
+
+  <h2>3. Words attached to verbs</h2>
+  <p>Adverbs that modify a verb, and auxiliary verbs, are placed <strong>directly before the verb</strong>.</p>
+  <div class="ex">
+    <div class="gloss"><div class="w"><span class="rw">我</span><span class="t">I</span></div><div class="w"><span class="rw">過</span><span class="t">(past)</span></div><div class="w"><span class="rw">食</span><span class="t">eat</span></div><div class="w"><span class="rw">檎果</span><span class="t">apple</span></div></div>
+    <p class="trans">“I ate an apple.”</p>
+  </div>
+
+  <div class="ex">
+    <div class="gloss"><div class="w"><span class="rw">我</span><span class="t">I</span></div><div class="w"><span class="rw">可</span><span class="t">can</span></div><div class="w"><span class="rw">食</span><span class="t">eat</span></div><div class="w"><span class="rw">橘果</span><span class="t">mandarin orange</span></div></div>
+    <p class="trans">“I can eat a mandarin orange.”</p>
+  </div>
+
+  <h2>4. Where other words go</h2>
+  <p><strong>Words of time</strong> are placed after the subject. (“His wife eats an apple every day” in section 2 has the same form.)</p>
+  <div class="ex">
+    <div class="gloss"><div class="w"><span class="rw">他</span><span class="t">he</span></div><div class="w"><span class="rw">先日</span><span class="t">yesterday</span></div><div class="w"><span class="rw">食</span><span class="t">eat</span></div><div class="w"><span class="rw">檎果</span><span class="t">apple</span></div></div>
+    <p class="trans">“He ate an apple yesterday.”</p>
+  </div>
+
+  <p>To ask a <strong>yes-or-no question</strong>, place <span class="rw">嗎</span> at the end of the sentence.</p>
+  <div class="ex">
+    <div class="gloss"><div class="w"><span class="rw">尓</span><span class="t">you</span></div><div class="w"><span class="rw">食</span><span class="t">eat</span></div><div class="w"><span class="rw">橘果</span><span class="t">mandarin orange</span></div><div class="w"><span class="rw">嗎</span><span class="t">(question)</span></div></div>
+    <p class="trans">“Do you eat mandarin oranges?”</p>
+  </div>
+
+  <div class="pager">
+    <a class="back" href="moji.html">← Previous chapter<span class="sub">Chapter 0: The Ruwish Script</span></a>
+    <a class="back next" href="kihonbun.html">Next chapter →<span class="sub">Chapter 2: Basic Sentences</span></a>
+  </div>
+
+</main>
+<footer>
+  <div class="inner">&copy; RUI</div>
+</footer>
+</body>
+</html>
