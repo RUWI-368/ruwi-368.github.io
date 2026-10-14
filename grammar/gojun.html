@@ -12,6 +12,8 @@
 <meta property="og:image" content="https://ruwi-368.github.io/image/site/ogp_semi.png">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://ruwi-368.github.io/grammar/gojun.html">
+<link rel="alternate" hreflang="ja" href="https://ruwi-368.github.io/grammar/gojun.html">
+<link rel="alternate" hreflang="en" href="https://ruwi-368.github.io/en/grammar/gojun.html">
 <link rel="icon" type="image/png" href="../image/site/favicon3.png">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,7 +87,21 @@
     opacity: 0.22;
   }
   .band .inner { position: relative; }
-  .crumb { margin: 0 0 18px; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--on-enji-muted); }
+  /* 言語の切り替え：帯の右上に置く */
+  .lang {
+    position: absolute;
+    top: -24px;
+    right: 20px;
+    color: var(--on-enji-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    padding: 2px 10px;
+  }
+  .lang:hover, .lang:focus-visible { color: var(--on-enji); }
+  .crumb { margin: 0 0 18px; padding-right: 90px; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--on-enji-muted); }
   .crumb a { color: var(--on-enji); text-decoration: none; }
   .crumb a span { border-bottom: 1px solid var(--on-enji-muted); }
   .crumb .title-icon {
@@ -293,6 +309,7 @@
 <body>
 <header class="band">
   <div class="inner">
+    <a class="lang" href="../en/grammar/gojun.html" hreflang="en" lang="en">English</a>
     <p class="crumb"><a href="../"><img class="title-icon" src="../image/site/semi_title.png" width="192" height="192" alt=""><span>留為語</span></a>　›　文法書</p>
     <h1>1章｜語順</h1>
   </div>
